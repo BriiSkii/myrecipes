@@ -1,0 +1,20 @@
+<h1>Recipes</h1>
+
+<% @recipes.each do |recipe| %>
+  <div class="row">
+    <div class="col-md-2 chef-info">
+      <%= gravatar_for(recipe.chef, size: 115) %>
+    </div>
+    <div class="col-md-10">
+      <div class="card card-outline-info mb-2">
+        <div class="card-block">
+          <h4 class="card-title"><%= link_to recipe.name, recipe_path(recipe) %></h4>
+          <p><%= truncate(recipe.description, length: 150) %></p>
+          <span class="card-subtitle mb-2 text-muted"><small>Created <%= time_ago_in_words(recipe.created_at)%> ago</small></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<% end %>
