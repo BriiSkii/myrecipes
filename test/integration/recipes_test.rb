@@ -27,6 +27,9 @@ class RecipesTest < ActionDispatch::IntegrationTest
     assert_match @recipe.name, response.body
     assert_match @recipe.description, response.body
     assert_match @chef.chefname, response.body
+    assert_select 'a[href=?]', recipes_path, text: "Back"
+    assert_select 'a[href=?]', edit_recipe_path(@recipe), text: "Edit"
+    assert_select 'a[href=?]', recipe_path(@recipe), text: "Delete"
   end
 
   test "create new valid recipe" do
@@ -35,12 +38,12 @@ class RecipesTest < ActionDispatch::IntegrationTest
     name_of_recipe = "Greens"
     description_of_recipe = "Wash them, trim them, add meat, water and greens in a pot. Boil down. "
     assert_difference 'Recipe.count', 1 do
-    post recipes_path, params: { recipe: { name: name_of_recipe,
-                                    description: description_of_recipe}}
-  end
-  follow_redirect!
-  assert_match name_of_recipe.capitalize, response.body
-  assert_match description_of_recipe, response.body
+      post recipes_path, params: { recipe: { name: name_of_recipe,
+                                      description: description_of_recipe}}
+      end
+    follow_redirect!
+    assert_match name_of_recipe.capitalize, response.body
+    assert_match description_of_recipe, response.body
   end
 
   test "reject invalid recipe submissions" do
