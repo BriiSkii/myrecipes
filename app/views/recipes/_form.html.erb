@@ -1,0 +1,24 @@
+<%= render 'errors', obj: @recipe %>
+
+<%= form_for(@recipe, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-control', rows: 18 %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Save Recipe', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
