@@ -1,0 +1,32 @@
+<%= form_for(@chef, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="form-group">
+        <%= f.label :chefname, "Name" %>
+        <%= f.text_field :chefname, class: 'form-control', placeholder: "Enter your name" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control', placeholder: "Enter your email" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control', placeholder: "Password" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Confirm Password" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit(@chef.new_record? ? "Create my Account" : "Updated My Account", class: 'btn btn-primary' )%>
+      </div>
+    </div>
+  </div>
+
+<% end %>

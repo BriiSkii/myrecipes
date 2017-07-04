@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RecipesEditTest < ActionDispatch::IntegrationTest
   def setup
-    @chef = Chef.create!(chefname: "Bobby", email: "bobby@example.com")
+    @chef = Chef.create!(chefname: "Bobby", email: "bobby@example.com", password: "password", password_confirmation: "password")
     @recipe = Recipe.create(name: "French Toast", description: "Milk, Eggs, Cinnamon, Nutmeg. Coat and fry", chef: @chef)
   end
 
@@ -28,7 +28,6 @@ class RecipesEditTest < ActionDispatch::IntegrationTest
     @recipe.reload
     assert_match updated_name, @recipe.name
     assert_match updated_description, @recipe.description
-
   end
 
 
