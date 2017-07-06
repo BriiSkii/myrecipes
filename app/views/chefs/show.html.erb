@@ -8,4 +8,8 @@
 
 <h4 align="center"><%= @chef.chefname %>'s Recipes'</h4>
 
-<%= render 'recipes/recipe', obj: @chef.recipes %>
+<%= render 'recipes/recipe', obj: @chef_recipes %>
+
+<div align="center" class="paggy">
+  <%= will_paginate @chef_recipes %>
+</div>
