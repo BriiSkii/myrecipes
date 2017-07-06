@@ -1,0 +1,21 @@
+<h1 class="center">All Chefs</h1>
+
+<div align="center">
+  <% @chefs.each do |chef| %>
+    <div class="card card-outline-info mb-3 col-md-6 main-card">
+          <div class="card-block chef-img">
+            <%= link_to gravatar_for(chef), chef_path(chef) %>
+          </div>
+          <div class="chef-info">
+            <div class="card-title"><%= link_to chef.chefname.capitalize, chef_path(chef) %></div>
+            <div class="card-text">
+              <small><%= pluralize(chef.recipes.count, "recipe") if chef.recipes %></small>
+            </div>
+          </div>
+    </div>
+  <% end %>
+
+  <div align="center" class="paggy">
+    <%= will_paginate %>
+  </div>
+</div>

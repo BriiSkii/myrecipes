@@ -54,3 +54,30 @@
 .recipe-actions{
   padding-top: 30px;
 }
+
+/* Chefs Styles */
+
+.card-col {
+  @include media-breakpoint-only(lg){
+    column-count: 3;
+  }
+  @include media-breakpoint-only(xl){
+    column-count: 3;
+  }
+}
+.main-card {
+  margin: 12px;
+}
+
+.chef-img {
+  float:left;
+}
+
+.chef-info{
+  float: right;
+}
+
+.paggy {
+  margin: 0 auto;
+  padding-left: 400px;
+}
