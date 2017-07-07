@@ -32,7 +32,7 @@
     <ul class="navbar-nav navbar-right">
       <% if logged_in? %>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_chef.chefname %>'s Profile</a>
+        <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_chef.chefname %>'s Profile <%= "Admin" if current_chef.admin? %></a>
           <div class="dropdown-menu" aria-labelledby="dropdown02">
             <%= link_to 'My Profile', chef_path(current_chef), class: 'dropdown-item' %>
 

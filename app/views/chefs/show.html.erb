@@ -4,8 +4,10 @@
   </div>
 
   <div>
+    <% if logged_in? and current_chef.admin? && !@chef.admin? %>
     <%= link_to "Delete Chef", chef_path(@chef), class: "btn btn-danger btn-sm", method: :delete,
                                                 data: {confirm: "Are you sure?"} %>
+    <% end %>
   </div>
 </div>
 
