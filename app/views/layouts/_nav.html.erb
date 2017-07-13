@@ -20,6 +20,21 @@
           </div>
       </li>
 
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ingredients</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown03">
+            <%= link_to 'All Ingredients', ingredients_path, class: 'dropdown-item' %>
+            <% if logged_in? && current_chef.admin? %>
+              <%= link_to 'Add Ingredient', new_ingredient_path, class: 'dropdown-item' %>
+            <% end %>
+            <% Ingredient.all.each do |ingredient| %>
+              <div><%= link_to ingredient.name.capitalize, ingredient_path(ingredient), class: "dropdown-item"%></div>
+            <% end %>
+            <div role="separator" class="divider"></div>
+
+          </div>
+      </li>
+
       <li class="nav-item">
         <%= link_to 'Chefs', chefs_path, class: 'nav-link' %>
       </li>

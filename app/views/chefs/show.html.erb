@@ -2,7 +2,6 @@
   <div class="col-md-4 offset-md-4 center">
     <%= gravatar_for @chef, size: 150 %>
   </div>
-
   <div>
     <% if logged_in? and current_chef.admin? && !@chef.admin? %>
     <%= link_to "Delete Chef", chef_path(@chef), class: "btn btn-danger btn-sm", method: :delete,
@@ -11,14 +10,16 @@
   </div>
 </div>
 
-<h4 align="center"><%= @chef.chefname %>'s Recipes'</h4>
+<br />
 
-
-
-<div class="delete-chef">
-  <%= render 'recipes/recipe', obj: @chef_recipes %>
-</div>
-
-<div align="center" class="paggy">
-  <%= will_paginate @chef_recipes %>
-</div>
+<% if @chef.recipes.count != 0 %>
+  <h4 align="center"><%= @chef.chefname %>'s Recipes'</h4>
+  <div>
+    <%= render 'recipes/recipe', obj: @chef_recipes %>
+  </div>
+  <div align="center" class="paggy">
+    <%= will_paginate @chef_recipes %>
+  </div>
+<% else %>
+  <h4 align="center">No recipes yet!</h4>
+<% end %>

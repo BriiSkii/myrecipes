@@ -1,9 +1,14 @@
 <div class="card">
   <div class="card-block">
-    <h4 class="card-title"><%= @recipe.name %></h4>
+    <h3 class="card-title"><%= @recipe.name %></h3>
     <p class="card-text"><%= @recipe.description %></p>
+    <p class="card-text">
+      <% if @recipe.ingredients.any? %>
+        <p>Ingredients: <%= render @recipe.ingredients %></p>
+      <% end %>
+    </p>
     <span class="card-subtitle mb-2 text-muted"><small>Created by:
-      <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+      <%= link_to gravatar_for(@recipe.chef), chef_path(@recipe.chef) %>
       <%= @recipe.chef.chefname %>
       <%= time_ago_in_words(@recipe.created_at)%> ago<small></span>
 
@@ -17,5 +22,42 @@
         <%= link_to "Back", recipes_path, class: "btn btn-primary btn-sm" %>
     </div>
   </div>
-
 </div>
+
+<hr />
+
+<h3 align="center">Comments:</h3>
+<% if @recipe.comments != 0 %>
+  <div class="card col-md-8 offset-2 mb-3">
+    <div class="card-block">
+      <div id="messages">
+        <%= render partial: 'comments/comments', object: @comments %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="card col-md-8 offset-2">
+    <h4>No Comments Yet!</h4>
+  </div>
+<% end %>
+
+
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <h5>Add Comment:</h5>
+      <hr />
+      <%= form_for([@recipe, @comment], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+        <div class="form-group">
+          <div class="form-group">
+            <%= f.label :description, "Comment" %>
+            <%= f.text_area :description, class: 'form-control', rows: 8, placeholder: "Enter Comment Here" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Submit', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
